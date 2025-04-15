@@ -13,7 +13,7 @@ import os
 Determine the input size and subsets from the first line of the input file
 """
 def parse_input(path):
-    with open("data/"+path, 'r') as f:
+    with open(path, 'r') as f:
         lines = f.readlines()
 
         n, m = map(int, lines[0].split())
