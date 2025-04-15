@@ -65,12 +65,12 @@ python main.py <instance_file> <solution_file> <cutoff_time> -seed <random_seed>
 
 ### Branch and Bound (bnb)
 ```
-python batch_run.py -inst <instance_file> -alg BnB -time <cutoff_time> -seed <random_seed>
+python exec.py -inst <instance_file> -alg BnB -time <cutoff_time> -seed <random_seed>
 ```
 
 ### Approximation (Approx)
 ```
-python batch_run.py -inst <instance_file> -alg Approx -time <cutoff_time> -seed <random_seed>
+python exec.py -inst <instance_file> -alg Approx -time <cutoff_time> -seed <random_seed>
 ```
 
 ### Verification
