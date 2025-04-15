@@ -27,4 +27,8 @@ if __name__ == "__main__":
     if args.alg == "BnB":
         best_score, best_set, trace = branch_and_bound(n, subsets, args.time, start_time)
         write_solution(instance_name, args.alg, args.time, best_score, best_set)
-        write_trace(instance_name, args.alg, args.time, 
+        write_trace(instance_name, args.alg, args.time, trace)
+    elif args.alg == "Approx":
+        perform_approx(args.inst, args.time, args.seed)
+
+
