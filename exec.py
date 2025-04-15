@@ -2,8 +2,9 @@
 import argparse
 import time
 import os
-from utils import read_instance, write_solution, write_trace
-from bnb import branch_and_bound
+from bnb.utils import read_instance, write_solution, write_trace
+from bnb.bnb import branch_and_bound
+from approx.approx import perform_approx
 import sys
 
 if __name__ == "__main__":
@@ -11,7 +12,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-inst", type=str)
-    parser.add_argument("-alg", type=str, choices=["BnB"])
+    parser.add_argument("-alg", type=str, choices=["BnB", "Approx", "LS1", "LS2"])
     parser.add_argument("-time", type=int)
     parser.add_argument("-seed", type=int, default=None)
     args = parser.parse_args()
@@ -26,4 +27,4 @@ if __name__ == "__main__":
     if args.alg == "BnB":
         best_score, best_set, trace = branch_and_bound(n, subsets, args.time, start_time)
         write_solution(instance_name, args.alg, args.time, best_score, best_set)
-        write_trace(instance_name, args.alg, args.time, trace)
+        write_trace(instance_name, args.alg, args.time, 
