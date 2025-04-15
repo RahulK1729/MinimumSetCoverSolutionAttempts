@@ -20,6 +20,11 @@ The repository is organized into modules for different solution approaches:
 - **bnb**: Branch and Bound implementation
   - Exact algorithm approach
   - Includes pruning techniques and memoization for faster convergence
+ 
+- **Approx**: Approximation implementation
+  - Greedy approximation algorithm implementation
+  - Finds the "best" subset that contains the most elements that are not yet included
+  - Adds the "best" subset to the solution and continues until all elements are included 
 
 - **data**: Test instances
   - Test cases of varying sizes (small, large)
@@ -55,13 +60,19 @@ The simulated annealing implementation was tested on all instances with the foll
 ### Simulated Annealing (LS1)
 ```
 cd LS1
-python main.py <instance_file> <solution_file> <cutoff_time>
+python main.py <instance_file> <solution_file> <cutoff_time> -seed <random_seed>
 ```
 
 ### Branch and Bound (bnb)
 ```
 cd bnb
-python exec.py -inst <instance_file> -alg BnB -time <cutoff_time>
+python batch_run.py -inst <instance_file> -alg BnB -time <cutoff_time> -seed <random_seed>
+```
+
+### Approximation (Approx)
+```
+cd approx
+python batch_run.py -inst <instance_file> -alg Approx -time <cutoff_time> -seed <random_seed>
 ```
 
 ### Verification
