@@ -6,6 +6,8 @@ This repository contains implementations of algorithms to solve the Minimum Set 
 
 The repository is organized into modules for different solution approaches:
 
+- **LS2**: Hill Climbing implementation
+
 - **LS1**: Simulated Annealing (SA) implementation
   - Modular design with separate components:
     - `main.py`: Entry point for running the algorithm
@@ -56,6 +58,11 @@ The simulated annealing implementation was tested on all instances with the foll
 - **Average Gap**: 15.97%
 
 ## Usage
+
+### Hill Climbing (LS2)
+```
+python exec.py -inst <instance_file> -alg LS2 -time <cutoff_time> -seed <random_seed>
+```
 
 ### Simulated Annealing (LS1)
 ```
