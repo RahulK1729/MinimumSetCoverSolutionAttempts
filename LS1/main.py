@@ -3,8 +3,8 @@ Main driver script for the simulated annealing algorithm.
 """
 import sys
 import time
-from sa_core import SimulatedAnnealing
-from utils import read_instance, write_solution
+from LS1.sa_core import SimulatedAnnealing
+from LS1.utils import read_instance, write_solution
 
 def main():
     """Main function to parse arguments and run the algorithm."""

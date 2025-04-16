@@ -59,25 +59,43 @@ The simulated annealing implementation was tested on all instances with the foll
 
 ## Usage
 
-### Hill Climbing (LS2)
+### Using the Main Executable
+
+All algorithms can be executed using the main `exec.py` script at the root directory:
+
 ```
-python exec.py -inst <instance_file> -alg LS2 -time <cutoff_time> -seed <random_seed>
+python exec.py -inst <instance_file_or_directory> -alg <algorithm> -time <cutoff_time> [-seed <random_seed>]
 ```
 
-### Simulated Annealing (LS1)
+Where:
+- `<instance_file_or_directory>`: Path to an instance file (.in) or directory containing instance files
+- `<algorithm>`: One of "BnB", "Approx", "LS1", or "LS2"
+- `<cutoff_time>`: Time limit in seconds
+- `<random_seed>`: (Optional) Random seed for reproducibility
+
+Examples:
+```
+# Run Simulated Annealing (LS1) on a single file
+python exec.py -inst data/test1.in -alg LS1 -time 60 -seed 42
+
+# Run Simulated Annealing on all files in a directory
+python exec.py -inst data/ -alg LS1 -time 60
+```
+
+### Algorithm-Specific Execution
+
+Alternatively, algorithms can be run directly from their respective modules:
+
+#### Simulated Annealing (LS1)
 ```
 cd LS1
-python main.py <instance_file> <solution_file> <cutoff_time> -seed <random_seed>
+python main.py <instance_file> <solution_file> <cutoff_time>
 ```
 
-### Branch and Bound (bnb)
+#### Branch and Bound (bnb)
 ```
-python exec.py -inst <instance_file> -alg BnB -time <cutoff_time> -seed <random_seed>
-```
-
-### Approximation (Approx)
-```
-python exec.py -inst <instance_file> -alg Approx -time <cutoff_time> -seed <random_seed>
+cd bnb
+python exec.py -inst <instance_file> -alg BnB -time <cutoff_time>
 ```
 
 ### Verification

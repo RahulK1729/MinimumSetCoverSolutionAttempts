@@ -5,15 +5,15 @@ import time
 import random
 from typing import List, Set, Tuple
 
-from solution import get_initial_solution, evaluate_solution
-from neighborhood import generate_neighbor
-from temperature import calculate_acceptance_probability, update_temperature
+from LS1.solution import get_initial_solution, evaluate_solution
+from LS1.neighborhood import generate_neighbor
+from LS1.temperature import calculate_acceptance_probability, update_temperature
 
 class SimulatedAnnealing:
     """Simulated annealing solver for the Minimum Set Cover problem."""
     
     def __init__(self, n: int, subsets: List[Set[int]], initial_temp: float = 100.0,
-                 cooling_rate: float = 0.95, min_temp: float = 0.1):
+                 cooling_rate: float = 0.95, min_temp: float = 0.1, seed: int = 42):
         """Initialize the simulated annealing solver.
         
         Args:
@@ -22,6 +22,7 @@ class SimulatedAnnealing:
             initial_temp: Initial temperature
             cooling_rate: Cooling rate
             min_temp: Minimum temperature
+            seed: Random seed for reproducibility
         """
         self.n = n
         self.subsets = subsets
@@ -29,6 +30,10 @@ class SimulatedAnnealing:
         self.initial_temp = initial_temp
         self.cooling_rate = cooling_rate
         self.min_temp = min_temp
+        self.seed = seed
+        
+        # Initialize random generator with seed
+        random.seed(self.seed)
         
         # Precompute subset information for faster evaluation
         self.subset_sizes = [len(s) for s in subsets]
@@ -56,6 +61,9 @@ class SimulatedAnnealing:
         Returns:
             Tuple of (best_cost, best_solution, trace)
         """
+        # Ensure random state is set with the seed
+        random.seed(self.seed)
+        
         # Generate initial solution using greedy approach
         current_solution = get_initial_solution(self.n, self.subsets, self.large_instance)
         current_cost, current_feasible = evaluate_solution(current_solution, self.subsets, self.universe)

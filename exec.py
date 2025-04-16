@@ -11,6 +11,7 @@ from bnb.utils import read_instance, write_solution, write_trace
 from bnb.bnb import branch_and_bound
 from approx.approx import perform_approx
 from LS2.hillclimbing import LS2
+from LS1.sa_core import SimulatedAnnealing
 
 
 """
@@ -29,6 +30,19 @@ def run_single_instance(inst_path, alg, time_limit, seed):
         write_trace(instance_name, alg, time_limit, trace)
     elif alg == "Approx":
         perform_approx(inst_path, time_limit, seed)
+    elif alg == "LS1":
+        # Run Simulated Annealing algorithm
+        sa = SimulatedAnnealing(n, subsets, seed=seed)
+        best_score, best_set, trace = sa.solve(time_limit, start_time)
+        
+        # Print runtime information
+        end_time = time.time()
+        runtime = end_time - start_time
+        print(f"LS1 completed in {runtime:.2f} seconds with score {best_score}")
+        
+        # Write solution and trace files
+        write_solution(instance_name, alg, time_limit, best_score, best_set, seed)
+        write_trace(instance_name, alg, time_limit, trace, seed)
     elif alg == "LS2":
         best_score, best_set, trace = LS2(n, subsets, time_limit, start_time)
         write_solution(instance_name, alg, time_limit, best_score, best_set, seed)

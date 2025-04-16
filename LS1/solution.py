@@ -2,19 +2,24 @@
 Solution management for the Minimum Set Cover problem.
 """
 import heapq
+import random
 from typing import List, Set, Tuple
 
-def get_initial_solution(n: int, subsets: List[Set[int]], large_instance: bool = False) -> List[int]:
+def get_initial_solution(n: int, subsets: List[Set[int]], large_instance: bool = False, seed: int = 42) -> List[int]:
     """Generate an initial solution using a greedy approach.
     
     Args:
         n: Universe size
         subsets: List of sets representing available subsets
         large_instance: Flag for large problem instances
+        seed: Random seed for reproducibility
         
     Returns:
         List of indices representing the initial solution
     """
+    # Set random seed for any randomization in the greedy algorithm
+    random.seed(seed)
+    
     universe = set(range(1, n + 1))
     solution = []
     covered = set()
