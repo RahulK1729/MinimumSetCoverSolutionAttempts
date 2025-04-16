@@ -1,20 +1,19 @@
 import random
 import time
-from typing import List, Set, Tuple
 
-def is_cover(universe:Set[int], subsets: List[Set[int]], selected: List[int]) -> bool:
+def is_cover(universe, subsets, selected):
     """Check if the selected subsets cover the universe"""
     covered = set()
     for idx in selected:
         covered.update(subsets[idx])
     return covered.issuperset(universe)
 
-def evaluate(subsets: List[Set[int]], solution: List[bool]) -> Tuple[int, List[int]]:
+def evaluate(subsets, solution):
     """Evaluate a solution (binary vector), return size and selected indices"""
     selected = [i for i in range(len(subsets)) if solution[i]]
     return len(selected), selected
 
-def get_random_solution(universe:Set[int], subsets: List[Set[int]], seed: int) -> List[bool]:
+def get_random_solution(universe, subsets, seed):
     """Generate a random initial solution that covers the universe"""
     random.seed(seed)
     solution = [False] * len(subsets)
@@ -26,7 +25,7 @@ def get_random_solution(universe:Set[int], subsets: List[Set[int]], seed: int) -
         covered.update(subsets[idx])
     return solution
 
-def hill_climbing(universe:Set[int], subsets: List[Set[int]], cutoff_time: float, seed: int) -> Tuple[int, List[int], List[Tuple[float, int]]]:
+def hill_climbing(universe, subsets, cutoff_time, seed):
     """Hill climbing local search algorithm"""
     start_time = time.time()
     trace = []
