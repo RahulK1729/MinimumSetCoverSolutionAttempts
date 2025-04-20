@@ -104,6 +104,60 @@ cd LS1
 python verify.py <data_dir> <output_dir> <cutoff_time>
 ```
 
+### Batch Experiment Runner
+This script allows you to run all algorithms across multiple problem instances and collect performance results.
+
+### Features
+Runs BnB, Approx, LS1, and LS2 on all .in files in a directory
+
+Allows repeated runs per instance for more robust results
+
+Records solution score and runtime for each run
+
+Stores results in separate CSV files for each algorithm
+
+### Output
+The results are saved in the experiment_results/ directory:
+
+BnB_results.csv
+
+Approx_results.csv
+
+LS1_results.csv
+
+LS2_results.csv
+
+Each CSV file contains the following columns:
+Instance, Run, Score, Runtime
+
+### Usage
+
+Run a single algorithm multiple times on all instances
+To run a specific algorithm on all instances in a directory multiple times, use:
+'''
+python experiment_runner.py -inst <data_directory> -alg <algorithm> -time <cutoff_seconds> -runs <number_of_runs>
+'''
+
+Example:
+To run the Branch and Bound (BnB) algorithm 1 time on each instance in the data/ directory with a 60-second cutoff:
+'''
+python experiment_runner.py -inst data/ -alg BnB -time 60 -runs 1
+'''
+This command will execute the BnB algorithm once per instance, with a 60-second time limit per run, and store the results in the BnB_results.csv file.
+
+Run a single algorithm multiple times on a single instance
+'''
+python experiment_runner.py -inst <data_file> -alg <algorithm> -time <cutoff_seconds> -runs <number_of_runs>
+'''
+
+
+Example
+To run the BnB algorithm 5 times on the data/test1.in file with a 60-second cutoff per run:
+'''
+python experiment_runner.py -inst data/test1.in -alg BnB -time 60 -runs 5
+'''
+This will run the BnB algorithm 5 times on test1.in, with a 60-second time limit for each run, and store the results in the BnB_results.csv.
+
 ## Notes
 
 The simulated annealing implementation performs exceptionally well on small instances, even finding better solutions than the known optimals in some cases. Performance decreases on larger instances, but still provides reasonable approximations within the time limit.
