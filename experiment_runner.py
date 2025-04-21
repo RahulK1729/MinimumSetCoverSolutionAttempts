@@ -2,6 +2,7 @@ import os
 import csv
 import argparse
 import time
+import random
 from bnb.bnb import branch_and_bound
 from bnb.utils import read_instance
 from approx.approx import perform_approx
@@ -35,9 +36,17 @@ def run_algorithm(alg, instance_path, time_limit, runs, seed):
         return best_score, trace, start_time
 
     elif alg == "Approx":
-        # Run Approximation Algorithm
+        start_time = time.time()
         perform_approx(instance_path, time_limit, seed)
-        return None, None, start_time
+        # Try to read score from output file
+        output_path = f"output/{instance_name}_Approx_{time_limit}.sol"
+        try:
+            with open(output_path, 'r') as f:
+                score_line = f.readline().strip()
+                score = int(score_line)
+        except Exception:
+            score = ""
+        return score, [], start_time
 
     elif alg == "LS1":
         # Run Simulated Annealing (LS1)
@@ -59,12 +68,18 @@ def main():
     parser.add_argument("-alg", type=str, required=True, choices=["BnB", "Approx", "LS1", "LS2"], help="Algorithm to run")
     parser.add_argument("-time", type=int, required=True, help="Time cutoff in seconds")
     parser.add_argument("-runs", type=int, required=True, help="Number of times to run the algorithm")
-    parser.add_argument("-seed", type=int, default=42, help="Random seed for reproducibility")
+    parser.add_argument("-seed", type=int, default=None, help="Random seed for reproducibility")
 
     args = parser.parse_args()
 
+    # If no seed is provided, generate a random seed
+    if args.seed is None:
+        args.seed = random.randint(0, 2**32 - 1)  # Generate a random seed
+    print(f"Using seed: {args.seed}")
+
     # Determine the output CSV file based on the chosen algorithm
     csv_path = os.path.join(output_dir, f'{args.alg}_results.csv')
+    print(f"Writing results to: {csv_path}")
 
     # Run the algorithm multiple times
     if os.path.isdir(args.inst):
@@ -80,7 +95,7 @@ def main():
                 end_time = time.time()
                 runtime = end_time - start_time
                 print(f"Run {run}: Best Score = {best_score}, Runtime = {runtime:.2f}s")
-                
+
                 # Write results to CSV
                 write_to_csv(csv_path, instance_path, run, best_score, runtime)
 
@@ -102,3 +117,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
