@@ -16,7 +16,7 @@ def greedy_lower_bound(universe, subsets, covered):
 
 def branch_and_bound(n, subsets, cutoff_time, start_time):
     universe = set(range(1, n + 1))
-    best_score = float("inf") # REPLACE WITH TIGHER UPPER BOUND
+    best_score = float("inf") # REPLACE WITH TIGHER UPPER BOUND FROM APPROX
     best_solution = []
     trace = []
 

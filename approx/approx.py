@@ -30,12 +30,11 @@ def parse_input(path):
 Perform minimum set cover approximation based on the size and subsets given
 """
 def set_cover(n, subsets):
-
-    unc = set(range(1, n+1))
+    subsets = list(enumerate(subsets))
 
     sel_ind = []
 
-    subsets = list(enumerate(subsets))
+    unc = set(range(1, n+1))
 
     while unc:
         best = max(subsets, key=lambda x: len(x[1] & unc))
@@ -44,18 +43,10 @@ def set_cover(n, subsets):
         if not s & unc:
             break
         unc -= s
-        sel_ind.append(index+1)
         subsets.remove(best)
+        sel_ind.append(index+1)
 
     return sel_ind
-
-"""
-Write the given solution in the proper format to the proper directory as specified
-"""
-def write(file, sel_ind):
-    with open(file, 'w') as f:
-        f.write(f"{len(sel_ind)}\n")
-        f.write(" ".join(map(str, sorted(sel_ind))) + "\n")
 
 """
 Main function that calls helper functions to parse inputs, perform minimum set cover approximation, and output results
@@ -71,11 +62,14 @@ def perform_approx(path, time, seed):
     inst = path.split('/')[-1].split(".")[0]
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    output_dir = os.path.join(script_dir, "output")
+    parent = os.path.dirname(script_dir)
+    output_dir = os.path.join(parent, "output")
     os.makedirs(output_dir, exist_ok=True)
 
     out_path = os.path.join(output_dir, f"{inst}_Approx_{time}.sol")
-    write(out_path, sel_ind)
+    with open(out_path, 'w') as f:
+        f.write(f"{len(sel_ind)}\n")
+        f.write(" ".join(map(str, sorted(sel_ind))) + "\n")
 
 if __name__ == "__main__":
     perform_approx()
