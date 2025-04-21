@@ -62,7 +62,8 @@ def perform_approx(path, time, seed):
     inst = path.split('/')[-1].split(".")[0]
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    output_dir = os.path.join(script_dir, "output")
+    parent = os.path.dirname(script_dir)
+    output_dir = os.path.join(parent, "output")
     os.makedirs(output_dir, exist_ok=True)
 
     out_path = os.path.join(output_dir, f"{inst}_Approx_{time}.sol")
