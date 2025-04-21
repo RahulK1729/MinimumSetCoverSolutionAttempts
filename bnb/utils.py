@@ -1,4 +1,3 @@
-# util file
 import os
 
 def read_instance(relative_path):
@@ -20,7 +19,13 @@ def write_solution(file_prefix, method, cutoff, solution, used_indices, seed=Non
     if seed is not None:
         name_parts.append(str(seed))
     sol_filename = f"{'_'.join(name_parts)}.sol"
-    with open(os.path.join("output", sol_filename), "w") as f:
+
+    # Navigate to project root and output folder
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    output_dir = os.path.join(project_root, "output")
+    os.makedirs(output_dir, exist_ok=True)
+    
+    with open(os.path.join(output_dir, sol_filename), "w") as f:
         f.write(f"{solution}\n")
         f.write(" ".join(str(i + 1) for i in used_indices) + "\n")
 
@@ -29,6 +34,12 @@ def write_trace(file_prefix, method, cutoff, trace_list, seed=None):
     if seed is not None:
         name_parts.append(str(seed))
     trace_filename = f"{'_'.join(name_parts)}.trace"
-    with open(os.path.join("output", trace_filename), "w") as f:
+
+    # Navigate to project root and output folder
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    output_dir = os.path.join(project_root, "output")
+    os.makedirs(output_dir, exist_ok=True)
+
+    with open(os.path.join(output_dir, trace_filename), "w") as f:
         for t, q in trace_list:
             f.write(f"{t:.2f} {q}\n")

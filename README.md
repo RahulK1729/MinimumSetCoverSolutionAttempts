@@ -150,7 +150,6 @@ Run a single algorithm multiple times on a single instance
 python experiment_runner.py -inst <data_file> -alg <algorithm> -time <cutoff_seconds> -runs <number_of_runs>
 '''
 
-
 Example
 To run the BnB algorithm 5 times on the data/test1.in file with a 60-second cutoff per run:
 '''
