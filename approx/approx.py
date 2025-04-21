@@ -75,16 +75,10 @@ def perform_approx(path, time, seed):
 
     inst = path.split('/')[-1].split(".")[0]
 
-<<<<<<< HEAD
-    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-    output_dir = os.path.join(project_root, "output")
-
-=======
     # add output to its namesake folder in the root directory
     script_dir = os.path.dirname(os.path.abspath(__file__))
     parent = os.path.dirname(script_dir)
     output_dir = os.path.join(parent, "output")
->>>>>>> 0ab2fd31769a413d5505fa906dc00696848de11b
     os.makedirs(output_dir, exist_ok=True)
 
     # name files according to convention and write

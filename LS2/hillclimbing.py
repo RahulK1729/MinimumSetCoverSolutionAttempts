@@ -1,3 +1,8 @@
+"""
+This file implements the hill climbing algorithm for the minimum set cover problem. 
+It will perform first-improvement hill climbing after generating a random valid solution based
+on the input seed, then output the best solution found when reaching a local optima or the time limit.
+"""
 import random
 import time
 
