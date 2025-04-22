@@ -7,6 +7,8 @@ This repository contains implementations of algorithms to solve the Minimum Set 
 The repository is organized into modules for different solution approaches:
 
 - **LS2**: Hill Climbing implementation
+  - First-improvement approach
+  - Deterministic based on seeding
 
 - **LS1**: Simulated Annealing (SA) implementation
   - Modular design with separate components:
@@ -31,31 +33,6 @@ The repository is organized into modules for different solution approaches:
 - **data**: Test instances
   - Test cases of varying sizes (small, large)
   - Includes known optimal solutions (.out files)
-
-## Verification Results
-
-The simulated annealing implementation was tested on all instances with the following results:
-
-### Small/Test Instances
-- **Optimal Solutions**: 73.9% (17/23)
-- **Better than Optimal**: 8.7% (2/23) 
-- **Worse than Optimal**: 17.4% (4/23)
-- **Average Gap**: 3.26%
-- **Average Runtime**: <0.01s
-
-### Large Instances
-- **Optimal Solutions**: 8.3% (1/12)
-- **Better than Optimal**: 0.0% (0/12)
-- **Worse than Optimal**: 91.7% (11/12)
-- **Average Gap**: 40.34%
-- **Average Runtime**: 1.28s
-
-### Overall Results
-- **Total Instances**: 35
-- **Optimal Solutions**: 51.4% (18/35)
-- **Better than Optimal**: 5.7% (2/35)
-- **Worse than Optimal**: 42.9% (15/35)
-- **Average Gap**: 15.97%
 
 ## Usage
 
@@ -134,7 +111,3 @@ To run the BnB algorithm 5 times on the data/test1.in file with a 60-second cuto
 python experiment_runner.py -inst data/test1.in -alg BnB -time 60 -runs 5
 '''
 This will run the BnB algorithm 5 times on test1.in, with a 60-second time limit for each run, and store the results in the BnB_results.csv.
-
-## Notes
-
-The simulated annealing implementation performs exceptionally well on small instances, even finding better solutions than the known optimals in some cases. Performance decreases on larger instances, but still provides reasonable approximations within the time limit.
