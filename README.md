@@ -82,28 +82,6 @@ python exec.py -inst data/test1.in -alg LS1 -time 60 -seed 42
 python exec.py -inst data/ -alg LS1 -time 60
 ```
 
-### Algorithm-Specific Execution
-
-Alternatively, algorithms can be run directly from their respective modules:
-
-#### Simulated Annealing (LS1)
-```
-cd LS1
-python main.py <instance_file> <solution_file> <cutoff_time>
-```
-
-#### Branch and Bound (bnb)
-```
-cd bnb
-python exec.py -inst <instance_file> -alg BnB -time <cutoff_time>
-```
-
-### Verification
-```
-cd LS1
-python verify.py <data_dir> <output_dir> <cutoff_time>
-```
-
 ### Batch Experiment Runner
 This script allows you to run all algorithms across multiple problem instances and collect performance results.
 
