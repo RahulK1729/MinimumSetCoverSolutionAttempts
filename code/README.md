@@ -7,6 +7,8 @@ This repository contains implementations of algorithms to solve the Minimum Set 
 The repository is organized into modules for different solution approaches:
 
 - **LS2**: Hill Climbing implementation
+  - First-improvement approach
+  - Deterministic based on seeding
 
 - **LS1**: Simulated Annealing (SA) implementation
   - Modular design with separate components:
