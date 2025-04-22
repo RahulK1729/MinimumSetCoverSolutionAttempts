@@ -109,7 +109,3 @@ To run the BnB algorithm 5 times on the data/test1.in file with a 60-second cuto
 python experiment_runner.py -inst data/test1.in -alg BnB -time 60 -runs 5
 '''
 This will run the BnB algorithm 5 times on test1.in, with a 60-second time limit for each run, and store the results in the BnB_results.csv.
-
-## Notes
-
-The simulated annealing implementation performs exceptionally well on small instances, even finding better solutions than the known optimals in some cases. Performance decreases on larger instances, but still provides reasonable approximations within the time limit.
