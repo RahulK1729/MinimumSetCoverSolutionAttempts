@@ -32,31 +32,6 @@ The repository is organized into modules for different solution approaches:
   - Test cases of varying sizes (small, large)
   - Includes known optimal solutions (.out files)
 
-## Verification Results
-
-The simulated annealing implementation was tested on all instances with the following results:
-
-### Small/Test Instances
-- **Optimal Solutions**: 73.9% (17/23)
-- **Better than Optimal**: 8.7% (2/23) 
-- **Worse than Optimal**: 17.4% (4/23)
-- **Average Gap**: 3.26%
-- **Average Runtime**: <0.01s
-
-### Large Instances
-- **Optimal Solutions**: 8.3% (1/12)
-- **Better than Optimal**: 0.0% (0/12)
-- **Worse than Optimal**: 91.7% (11/12)
-- **Average Gap**: 40.34%
-- **Average Runtime**: 1.28s
-
-### Overall Results
-- **Total Instances**: 35
-- **Optimal Solutions**: 51.4% (18/35)
-- **Better than Optimal**: 5.7% (2/35)
-- **Worse than Optimal**: 42.9% (15/35)
-- **Average Gap**: 15.97%
-
 ## Usage
 
 ### Using the Main Executable
